@@ -1,0 +1,33 @@
+!important
+table.calendar {
+  border-collapse: collapse; /* Remove spacing between cells */
+  width: 100%;
+  margin: 20px auto; /* Center the calendar */
+  font-family: sans-serif;
+}
+
+table.calendar th,
+table.calendar td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+table.calendar th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+table.calendar td.today {
+  background-color: #fcf8e3; /* Light yellow for today */
+  font-weight: bold;
+}
+
+table.calendar td.event {
+  background-color: #ffffe0; /* Light yellow for days with events */
+}
+
+table.calendar td a {
+  color: #000; /* Link color */
+  text-decoration: none;
+}

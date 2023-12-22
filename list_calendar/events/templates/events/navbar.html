@@ -1,0 +1,81 @@
+<!-- events/navbar.html-->
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'home'%}">Todo</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" id="next-month-link" href="#">Next month</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" id="events" href="{%url 'list_events'%}">Events</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<script>
+function calculateNextMonth(currentYear, currentMonthNumber) {
+  // Create an array of month names in the desired order
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  // Calculate the index of the next month, wrapping around to January
+  const nextMonthIndex = (currentMonthNumber - 1 + 1) % 12; // Subtract 1 here
+
+  // Get the name of the next month
+  const nextMonthName = monthNames[nextMonthIndex];
+
+  // Update the year if we've reached December
+  const nextYear = nextMonthIndex === 0 ? currentYear + 1 : currentYear;
+
+  // Update the href attribute of the "next month" link
+  const nextMonthLink = document.getElementById('next-month-link');
+  nextMonthLink.href = `{% url 'home' %}${nextYear}/${nextMonthName.toLowerCase()}/`;
+
+  // Prevent default link behavior and handle navigation manually
+  nextMonthLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = nextMonthLink.href;
+  });
+}
+
+// Initialize variables with current date
+let nextYear = {{ year }};
+let nextMonth = {{ month_number }};
+
+// Call the function to set the initial URL
+calculateNextMonth(nextYear, nextMonth);
+
+
+
+
+</script>
+</body>
+{% block content %}
+
+{% endblock %}

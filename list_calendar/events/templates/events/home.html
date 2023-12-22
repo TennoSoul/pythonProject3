@@ -1,0 +1,15 @@
+<!-- events/home.html-->
+
+{% extends 'events/base.html' %}
+
+{% block content %}
+
+<head>
+    <title>home</title>
+    <link href="style.css">
+</head>
+<center>
+   <a class="table table-striped-columns" href="{%url 'add-event' %}" >{{ cal|safe }}</a>
+</center>
+
+{% endblock %}
